@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="平台及工具 Windows10系统电脑 git version 2.32.0.windows.2 node.js version 14.17.5 npm version 6.14.14  工具安装git 下载安装包后一路默认安装就好  node 安装时一路默认next,最好安装到非系统盘 在安装目录下新建两个文件夹”node_global”. “node_cache”,我是建在D盘下 打开cmd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo建站过程实录">
+<meta property="og:url" content="http://example.com/2021/08/15/hexo-build/index.html">
+<meta property="og:site_name" content="csLeet">
+<meta property="og:description" content="平台及工具 Windows10系统电脑 git version 2.32.0.windows.2 node.js version 14.17.5 npm version 6.14.14  工具安装git 下载安装包后一路默认安装就好  node 安装时一路默认next,最好安装到非系统盘 在安装目录下新建两个文件夹”node_global”. “node_cache”,我是建在D盘下 打开cmd">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-15T15:43:46.000Z">
+<meta property="article:modified_time" content="2021-08-15T16:17:52.504Z">
+<meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon1.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/kagami.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/kagami.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>hexo建站过程实录</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/2021/08/15/about%20me/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/08/15/%5B%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%5D%E5%B0%8F%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/08/15/hexo-build/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/08/15/hexo-build/&text=hexo建站过程实录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/08/15/hexo-build/&is_video=false&description=hexo建站过程实录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo建站过程实录&body=Check out this article: http://example.com/2021/08/15/hexo-build/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/08/15/hexo-build/&name=hexo建站过程实录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/08/15/hexo-build/&t=hexo建站过程实录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E5%8F%8A%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">平台及工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git"><span class="toc-number">2.1.</span> <span class="toc-text">git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node"><span class="toc-number">2.2.</span> <span class="toc-text">node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">2.3.</span> <span class="toc-text">test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5hexo%E5%8D%9A%E5%AE%A2"><span class="toc-number">3.</span> <span class="toc-text">引入hexo博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.</span> <span class="toc-text">建立文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.2.</span> <span class="toc-text">安装hexo</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        hexo建站过程实录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Raffi Zheng</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-15T15:43:46.000Z" itemprop="datePublished">2021-08-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Web/" rel="tag">Web</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="平台及工具"><a href="#平台及工具" class="headerlink" title="平台及工具"></a>平台及工具</h2><ul>
+<li>Windows10系统电脑</li>
+<li>git version 2.32.0.windows.2</li>
+<li>node.js version 14.17.5</li>
+<li>npm version 6.14.14</li>
+</ul>
+<h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><ul>
+<li>下载安装包后一路默认安装就好</li>
+</ul>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><ol>
+<li>安装时一路默认next,最好安装到非系统盘</li>
+<li>在安装目录下新建两个文件夹”node_global”. “node_cache”,我是建在D盘下</li>
+<li>打开cmd 分别执行以下两条指令,引号内的内容的按自己的目录更改</li>
+</ol>
+<ul>
+<li>npm config set prefix “D:\nodejs\node_global”</li>
+<li>npm config set cache “D:\nodejs\node_cache”</li>
+</ul>
+<ol start="4">
+<li>修改环境变量</li>
+</ol>
+<ul>
+<li>用户变量”path” -&gt; 编辑最后一条npm -&gt; 修改为”D:\nodejs\node_global”</li>
+<li>新建系统变量 -&gt; 变量名”NODE_PATH” -&gt; 值”D:\nodejs\node_modules”</li>
+</ul>
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><ol>
+<li>打开cmd界面</li>
+<li>分别输入”git -v”和”node -v”,观察是否反馈version号,若反馈则说明正常</li>
+</ol>
+<h2 id="引入hexo博客"><a href="#引入hexo博客" class="headerlink" title="引入hexo博客"></a>引入hexo博客</h2><h3 id="建立文件夹"><a href="#建立文件夹" class="headerlink" title="建立文件夹"></a>建立文件夹</h3><ul>
+<li>在准备存放博客的文件夹下建立属于自己的文件夹,我的是”D:\BLOG”</li>
+</ul>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><ul>
+<li><font color=red>使用管理员权限</font>打开cmd,运行以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></li>
+<li>在对应博客文件夹下打开git bash,运行以下代码,来进行hexo初始化文件的下载<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></li>
+<li>发生以下报错,也就是clone成功了,但缺少npm插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">&#x27;npm&#x27; is not recognized as an internal or external command,</span><br><span class="line">operable program or batch file.</span><br><span class="line">WARN  Failed to install dependencies. Please run &#x27;npm install&#x27; in &quot;D:\BLOG&quot; folder.</span><br></pre></td></tr></table></figure></li>
+<li>这里不要直接在git bash运行”npm install”,而是<font color=red>回到管理员权限打开的cmd</font>,运行以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
+<li>分别运行以下代码,打开localhost:4000测试一下hexo网站是否能在本地运行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+<li>至此,hexo的基本部署完毕,剩下的内容就是在github搜索你喜欢的hexo-theme并进行博客改善</li>
+<li>以下是一些可能用得到的网站:<br>  <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">文档 | Hexo</a><br>  <a target="_blank" rel="noopener" href="https://github.com/probberechts/hexo-theme-cactus">本网站采用的主题 | Cactus</a><br>  <a target="_blank" rel="noopener" href="https://qiutedyuan.github.io/blog/2019/06/01/%E5%A6%82%E4%BD%95%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BABlog/#%E5%AE%89%E8%A3%85nodejs">如何用Hexo搭建个人Blog,包含后续的部署至GitHub page的所需操作</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/2021/08/15/about%20me/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E5%8F%8A%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">平台及工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git"><span class="toc-number">2.1.</span> <span class="toc-text">git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node"><span class="toc-number">2.2.</span> <span class="toc-text">node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">2.3.</span> <span class="toc-text">test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5hexo%E5%8D%9A%E5%AE%A2"><span class="toc-number">3.</span> <span class="toc-text">引入hexo博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.</span> <span class="toc-text">建立文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.2.</span> <span class="toc-text">安装hexo</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/08/15/hexo-build/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/08/15/hexo-build/&text=hexo建站过程实录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/08/15/hexo-build/&is_video=false&description=hexo建站过程实录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo建站过程实录&body=Check out this article: http://example.com/2021/08/15/hexo-build/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/08/15/hexo-build/&title=hexo建站过程实录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/08/15/hexo-build/&name=hexo建站过程实录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/08/15/hexo-build/&t=hexo建站过程实录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    Raffi Zheng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/2021/08/15/about%20me/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
