@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Manjaro KDE System Installation on TinkPad E15</title>
+      <link href="/2022/04/10/TinkPad%20E15%20Manjaro%20KDE%E5%AE%89%E8%A3%85%E5%AE%9E%E5%BD%95/"/>
+      <url>/2022/04/10/TinkPad%20E15%20Manjaro%20KDE%E5%AE%89%E8%A3%85%E5%AE%9E%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="启动盘制作"><a href="#启动盘制作" class="headerlink" title="启动盘制作"></a>启动盘制作</h2><ul><li><a href="https://www.balena.io/etcher/">ISO刻录软件</a></li><li><a href="https://manjaro.org/downloads/official/kde/">KDE下载</a><br>刻录至U盘即可，注意U盘最好大于8G</li></ul><h2 id="BIOS设置"><a href="#BIOS设置" class="headerlink" title="BIOS设置"></a>BIOS设置</h2><p>关闭安全引导（Secure Boot）设置Disable<br>设置boot为UEFI only<br>设置硬盘模式为AHCI（NVME无需设置）<br>Thinkpad为f2进入bios，f12进入root启动界面</p><h2 id="分区安装（512G存储空间）"><a href="#分区安装（512G存储空间）" class="headerlink" title="分区安装（512G存储空间）"></a>分区安装（512G存储空间）</h2><ul><li>手动分区</li><li>GUID分区表</li><li>引导分区（EFI）：1G 文件系统fat32 挂载点/boot/efi 标记boot</li><li>交换分区（swap）：16G（16384M） 文件系统linuxswap 标记swap</li><li>根分区（root）：200G 文件系统ext4 挂载点/</li><li>用户分区（home）：260G 文件系统ext4 挂载点/home<br>后续设置完安装即可</li></ul><h2 id="软件源配置"><a href="#软件源配置" class="headerlink" title="软件源配置"></a>软件源配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman-mirrors -i -c China -m rank</span><br></pre></td></tr></table></figure><h2 id="clash设置"><a href="#clash设置" class="headerlink" title="clash设置"></a>clash设置</h2><p><a href="https://zhuanlan.zhihu.com/p/402481568">https://zhuanlan.zhihu.com/p/402481568</a></p><h2 id="go语言环境配置"><a href="#go语言环境配置" class="headerlink" title="go语言环境配置"></a>go语言环境配置</h2><p>编辑 ~/.zshrc文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># set go environment</span><br><span class="line">export GOROOT=/usr/lib/go</span><br><span class="line">export PATH=$PATH:$GOROOT/bin</span><br><span class="line">export GOPATH=$HOME/go</span><br><span class="line">export PATH=$PATH:$GOPATH/bin</span><br><span class="line"># set proxy</span><br><span class="line">export GOPROXY=https://goproxy.io,direct</span><br><span class="line">export GOSUMDB=off</span><br><span class="line">export GO111MODULE=auto</span><br></pre></td></tr></table></figure><p>使生效</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure><p>检查环境</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go env</span><br></pre></td></tr></table></figure><h2 id="安装bigsur主题"><a href="#安装bigsur主题" class="headerlink" title="安装bigsur主题"></a>安装bigsur主题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Documents</span><br><span class="line">git clone https://github.com/vinceliuice/WhiteSur-kde</span><br><span class="line">cd WhiteSur-kde</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Failed to connect to github.com port 443: Timed out</title>
       <link href="/2021/08/16/port%20443/"/>
       <url>/2021/08/16/port%20443/</url>
@@ -11,12 +30,12 @@
         <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>某天hexo d上传更新至github时报此错<br>以前靠着梯子的全局代理还能抢救一下,但是今天想彻底改善一下,于是查找了解决方法.</p><h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><ol><li>打开git bash,运行以下代码,清除代理配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br></pre></td></tr></table></figure></li><li>打开ipaddress.com,查询如下两个域名，并分别记录下其对应的ip：</li></ol><ul><li>github.com</li><li>github.global.ssl.fastly.net</li></ul><ol start="3"><li>进入C:\Windows\System32\drivers\etc对hosts文件修改</li></ol><ul><li>在末尾加上以下两条(ip值根据网站查询到的进行更改)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.30.253.112 github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure></li></ul><ol start="4"><li>打开cmd,清理一下DNS<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure></li><li>重新打开git bash,hexo d后光速上传,问题解决.</li></ol>]]></content>
       
       
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
       
-        <tags>
-            
-            <tag> Web </tag>
-            
-        </tags>
       
     </entry>
     
@@ -30,12 +49,12 @@
         <content type="html"><![CDATA[<h2 id="平台及工具"><a href="#平台及工具" class="headerlink" title="平台及工具"></a>平台及工具</h2><ul><li>Windows10系统电脑</li><li>git version 2.32.0.windows.2</li><li>node.js version 14.17.5</li><li>npm version 6.14.14</li></ul><h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><ul><li>下载安装包后一路默认安装就好</li></ul><h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><ol><li>安装时一路默认next,最好安装到非系统盘</li><li>在安装目录下新建两个文件夹”node_global”. “node_cache”,我是建在D盘下</li><li>打开cmd 分别执行以下两条指令,引号内的内容的按自己的目录更改</li></ol><ul><li>npm config set prefix “D:\nodejs\node_global”</li><li>npm config set cache “D:\nodejs\node_cache”</li></ul><ol start="4"><li>修改环境变量</li></ol><ul><li>用户变量”path” -&gt; 编辑最后一条npm -&gt; 修改为”D:\nodejs\node_global”</li><li>新建系统变量 -&gt; 变量名”NODE_PATH” -&gt; 值”D:\nodejs\node_modules”</li></ul><h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><ol><li>打开cmd界面</li><li>分别输入”git -v”和”node -v”,观察是否反馈version号,若反馈则说明正常</li></ol><h2 id="引入hexo博客"><a href="#引入hexo博客" class="headerlink" title="引入hexo博客"></a>引入hexo博客</h2><h3 id="建立文件夹"><a href="#建立文件夹" class="headerlink" title="建立文件夹"></a>建立文件夹</h3><ul><li>在准备存放博客的文件夹下建立属于自己的文件夹,我的是”D:\BLOG”</li></ul><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><ul><li><font color=red>使用管理员权限</font>打开cmd,进入对应博客文件夹,运行以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></li><li>在对应博客文件夹下打开git bash,运行以下代码,来进行hexo初始化文件的下载<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></li><li>发生以下报错,也就是clone成功了,但缺少npm插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">&#x27;npm&#x27; is not recognized as an internal or external command,</span><br><span class="line">operable program or batch file.</span><br><span class="line">WARN  Failed to install dependencies. Please run &#x27;npm install&#x27; in &quot;D:\BLOG&quot; folder.</span><br></pre></td></tr></table></figure></li><li>我直接在git bash运行”npm install”,产生了以下报错,大概意思是当前没有install权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br><span class="line">npm ERR! code EPERM</span><br><span class="line">npm ERR! syscall open</span><br><span class="line">npm ERR! path D:\nodejs\node_cache\_cacache\tmp\930dc59c</span><br><span class="line">npm ERR! errno -4048</span><br><span class="line">npm ERR! Error: EPERM: operation not permitted, open &#x27;D:\nodejs\node_cache\_cacache\tmp\930dc59c&#x27;</span><br><span class="line">npm ERR!  [OperationalError: EPERM: operation not permitted, open &#x27;D:\nodejs\node_cache\_cacache\tmp\930dc59c&#x27;] &#123;</span><br><span class="line">npm ERR!   cause: [Error: EPERM: operation not permitted, open &#x27;D:\nodejs\node_cache\_cacache\tmp\930dc59c&#x27;] &#123;</span><br><span class="line">npm ERR!     errno: -4048,</span><br><span class="line">npm ERR!     code: &#x27;EPERM&#x27;,</span><br><span class="line">npm ERR!     syscall: &#x27;open&#x27;,</span><br><span class="line">npm ERR!     path: &#x27;D:\\nodejs\\node_cache\\_cacache\\tmp\\930dc59c&#x27;</span><br><span class="line">npm ERR!   &#125;,</span><br><span class="line">npm ERR!   isOperational: true,</span><br><span class="line">npm ERR!   errno: -4048,</span><br><span class="line">npm ERR!   code: &#x27;EPERM&#x27;,</span><br><span class="line">npm ERR!   syscall: &#x27;open&#x27;,</span><br><span class="line">npm ERR!   path: &#x27;D:\\nodejs\\node_cache\\_cacache\\tmp\\930dc59c&#x27;</span><br><span class="line">npm ERR! &#125;</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! The operation was rejected by your operating system.</span><br><span class="line">npm ERR! It&#x27;s possible that the file was already in use (by a text editor or antivirus),</span><br><span class="line">npm ERR! or that you lack permissions to access it.</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! If you believe this might be a permissions issue, please double-check the</span><br><span class="line">npm ERR! permissions of the file and its containing directories, or try running</span><br><span class="line">npm ERR! the command again as root/Administrator.</span><br></pre></td></tr></table></figure></li><li>所以这里不要直接在git bash运行”npm install”,而是<font color=red>回到管理员权限打开的cmd</font>,进入对应博客文件夹,运行以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></li><li>分别运行以下代码,打开localhost:4000测试一下hexo网站是否能在本地运行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></li><li>至此,hexo的基本部署完毕,剩下的内容就是在github搜索你喜欢的hexo-theme并进行博客改善</li><li>以下是一些可能用得到的网站:<br>  <a href="https://hexo.io/zh-cn/docs/">文档 | Hexo</a><br>  <a href="https://github.com/probberechts/hexo-theme-cactus">本网站采用的主题 | Cactus</a><br>  <a href="https://qiutedyuan.github.io/blog/2019/06/01/%E5%A6%82%E4%BD%95%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BABlog/#%E5%AE%89%E8%A3%85nodejs">如何用Hexo搭建个人Blog,包含后续的部署至GitHub page的所需操作</a></li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
       
-        <tags>
-            
-            <tag> Web </tag>
-            
-        </tags>
       
     </entry>
     
@@ -49,12 +68,12 @@
         <content type="html"><![CDATA[<p>小作文分为两种：</p><ol><li>书信</li><li>通知</li></ol><h2 id="书信框架"><a href="#书信框架" class="headerlink" title="书信框架"></a>书信框架</h2><pre><code>称呼：        开头段：自我介绍/寒暄+写信目的        中间段：分层描述        结尾段：重申写作目的+期盼回复                                礼貌语，                                署名</code></pre><h3 id="称呼"><a href="#称呼" class="headerlink" title="称呼"></a>称呼</h3><ol><li>Dear + 人名/昵称,</li><li>Dear + Mr./Ms. + 姓氏,</li><li>Dear + 头衔/职位 + 姓名,</li><li>Dear + 集体身份,</li><li>Dear Sir or Madam,</li></ol><h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><ol><li>学生：I am a freshman/sophomore/junior/senior/undergraduate/graduate/postgraduate in the Department of Art in 某大学.</li><li>学生团体：I am the president of the Students’ Union of 某大学.</li><li>公司职员：I am a staff member from your company.</li><li>社会人士：I am sb who + 定从/ As sb who +定从.</li></ol><h3 id="寒暄"><a href="#寒暄" class="headerlink" title="寒暄"></a>寒暄</h3><ol><li>好久不见：Long time no see!/ It has been a long time since last time we met.</li><li>最近好吗：How is everything going?/ How have you been?</li><li>收到信后很开心：I am exceedingly delighted to receive your last letter (in which you mentioned that …).</li></ol><h3 id="写信目的"><a href="#写信目的" class="headerlink" title="写信目的"></a>写信目的</h3><p><em>必写：I’m writing for the purpose of doing sth …</em></p><ol><li>求职：apply for the postion of …</li><li>推荐：heartily recommend … as your proper choice</li><li>投诉：complain about …/ makea complaint about …</li><li>邀请：invite you to …</li><li>资讯：request for some detailed information about …</li><li>感谢/道歉：express my heartfelt gratitude/ apology for …</li><li>建议：offer/ give/ propose you some advice/ suggestions on …</li><li>辞职：resign from the current position</li></ol><h3 id="分层描述"><a href="#分层描述" class="headerlink" title="分层描述"></a>分层描述</h3><p>　(自己写内容，要精彩)<br>　To begin with,…In addition,…Finally,…</p><h3 id="期待回复"><a href="#期待回复" class="headerlink" title="期待回复"></a>期待回复</h3><p>　 I would appreciate it if you would send me a reply at your earliest convenience.</p><h2 id="通知框架"><a href="#通知框架" class="headerlink" title="通知框架"></a>通知框架</h2><pre><code>        Notice                    Dec.18,2021P1：目的+活动介绍+时间P2：具体信息点P3：期待参与+联系方式                    署名</code></pre><h3 id="框架例文"><a href="#框架例文" class="headerlink" title="框架例文"></a>框架例文</h3><center>Notice</center><div align = right>Dec.18,2021</div>    　　Volunteers are needed for an international conference on globalization next month in our school libary.</br>    　　First of all, ... What's more, ... Last but not the least, ...</br>    　　If you are interested in this activity, please contact us by calling 12345 or sending your resume to 12345@qq.com in one week. Welcome to come and expect your excellent performance.</br><div align = right>Postgraduate's Association</div>]]></content>
       
       
+      <categories>
+          
+          <category> English </category>
+          
+      </categories>
       
-        <tags>
-            
-            <tag> English </tag>
-            
-        </tags>
       
     </entry>
     
@@ -68,12 +87,12 @@
         <content type="html"><![CDATA[<p>大作文的作文层次分为三个部分，根据题意来选择：</p><ol><li>第一段：画图描述<br> 1.1 单图描述<br> 1.2 双图描述</li><li>第二段：意义阐述<br> 2.1 因果论证（现象）<br> 2.2 正反论证（品质）</li><li>第三段：举例/建议措施<br> 3.1 举例论证：引出句+例子<br> 3.2 建议措施：建议+总结</li></ol><h2 id="单图描述模板"><a href="#单图描述模板" class="headerlink" title="单图描述模板"></a>单图描述模板</h2><p>　　According to the vivid description in the picture, 描述内容（这部分尽量华丽高级一些）. Furthermore, there is a caption under the picture,Which reads, “标题”.</p><h2 id="双图描述模板"><a href="#双图描述模板" class="headerlink" title="双图描述模板"></a>双图描述模板</h2><ol><li>引出句：As is vividly shown in the above two pictures, …</li><li>连接词（一正一反）：likewise, on the contrary</li><li>结尾句：Furthermore, there is a caption under the picture,Which reads, “标题”.</li></ol><h2 id="因果论证模板"><a href="#因果论证模板" class="headerlink" title="因果论证模板"></a>因果论证模板</h2><p>　　Simple as the picture is, the connotation subtly conveyed should be taken into consideration with more insight and penetration. Several factors could account for the negative/positive phenomenon. For one thing, 原因一. For another, 原因二. Undeniably, the phenomenon boasts an irreplaceable value to …/the phenomenon poses an irreplaceable harm to …(总之最后一句总结就行)</p><h2 id="正反论证模板"><a href="#正反论证模板" class="headerlink" title="正反论证模板"></a>正反论证模板</h2><p>　　Actually, there is a growing awareness of the importance of 某品质. There is no denying the fact that 某品质. can bing our creative power into play, arouse our enthusiasm for work and help us to overcome difficulties. In other words, without 某品质, the goal we set cannot be reached, and the hard nut cannot be cracked. All in all, sth/doing sth is really of utmost significance in this competitive society.</p><h2 id="建议措施模板"><a href="#建议措施模板" class="headerlink" title="建议措施模板"></a>建议措施模板</h2><p>　　Judging from what has been discussed above, I am convinced that 认为的内容… For one thing, 我们应该… For another, 我们应该… Only in this way can we …</p>]]></content>
       
       
+      <categories>
+          
+          <category> English </category>
+          
+      </categories>
       
-        <tags>
-            
-            <tag> English </tag>
-            
-        </tags>
       
     </entry>
     
@@ -84,7 +103,7 @@
       <link href="/2021/08/15/about%20me/"/>
       <url>/2021/08/15/about%20me/</url>
       
-        <content type="html"><![CDATA[<h2 id="Personal-profile"><a href="#Personal-profile" class="headerlink" title="Personal profile"></a>Personal profile</h2><ul><li>本科毕业于武汉理工大学计算机科学与技术专业</li><li>喜欢一切极客的事物,讨厌浪费时间的人和物,讨厌政治</li><li>有任何事情想探讨和表达,可以通过以下方式联系我</li></ul><h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><ul><li>Wechat: Kenshin1337</li><li>Email: <a href="mailto:&#x72;&#x61;&#102;&#x66;&#105;&#122;&#104;&#101;&#x6e;&#103;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x72;&#x61;&#102;&#x66;&#105;&#122;&#104;&#101;&#x6e;&#103;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="Personal-profile"><a href="#Personal-profile" class="headerlink" title="Personal profile"></a>Personal profile</h2><ul><li>本科毕业于武汉理工大学计算机科学与技术专业</li><li>喜欢一切极客的事物,讨厌浪费时间的人和物,讨厌政治</li><li>有任何事情想探讨和表达,可以通过以下方式联系我</li></ul><h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><ul><li>Wechat: Kenshin1337</li><li>Email: <a href="mailto:&#x72;&#x61;&#x66;&#102;&#105;&#122;&#104;&#101;&#110;&#103;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x72;&#x61;&#x66;&#102;&#105;&#122;&#104;&#101;&#110;&#103;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></li></ul>]]></content>
       
       
       
