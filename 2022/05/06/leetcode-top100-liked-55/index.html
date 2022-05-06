@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming, Greedy Given an array of non-negative integers nums, you are initially positioned at the first index of the array.Each element">
+    <meta name="description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming, Greedy You are given an integer array nums. You are initially positioned at the array’s first index, and each element in the ar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 45. Jump Game II">
-<meta property="og:url" content="https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/index.html">
+<meta property="og:title" content="Leetcode 55. Jump Game">
+<meta property="og:url" content="https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/index.html">
 <meta property="og:site_name" content="Kenshin&#39;s Blog">
-<meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming, Greedy Given an array of non-negative integers nums, you are initially positioned at the first index of the array.Each element">
+<meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming, Greedy You are given an integer array nums. You are initially positioned at the array’s first index, and each element in the ar">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-04T09:25:19.000Z">
-<meta property="article:modified_time" content="2022-05-04T09:26:44.586Z">
+<meta property="article:published_time" content="2022-05-06T10:33:49.000Z">
+<meta property="article:modified_time" content="2022-05-06T10:35:04.108Z">
 <meta property="article:author" content="Raffi Zheng">
 <meta name="twitter:card" content="summary">
     
@@ -36,7 +36,7 @@
       
     
     <!-- title -->
-    <title>Leetcode 45. Jump Game II</title>
+    <title>Leetcode 55. Jump Game</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -74,10 +74,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post " href="/2022/05/06/leetcode-top100-liked-46/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="Next post " href="/2022/05/04/leetcode-top100-liked-42/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post " href="/2022/05/06/leetcode-top100-liked-53/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -90,10 +88,10 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&text=Leetcode 45. Jump Game II"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&title=Leetcode 45. Jump Game II"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&title=Leetcode 45. Jump Game II"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&text=Leetcode 55. Jump Game"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&title=Leetcode 55. Jump Game"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&title=Leetcode 55. Jump Game"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -110,7 +108,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Leetcode 45. Jump Game II
+        Leetcode 55. Jump Game
     </h1>
 
 
@@ -122,7 +120,7 @@
       
     <div class="postdate">
       
-        <time datetime="2022-05-04T09:25:19.000Z" itemprop="datePublished">2022-05-04</time>
+        <time datetime="2022-05-06T10:33:49.000Z" itemprop="datePublished">2022-05-06</time>
         
       
     </div>
@@ -143,22 +141,22 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a target="_blank" rel="noopener" href="https://leetcode.com/tag/array/">Array</a>, <a target="_blank" rel="noopener" href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a>, <a target="_blank" rel="noopener" href="https://leetcode.com/tag/greedy/">Greedy</a></p>
-<p>Given an array of non-negative integers <code>nums</code>, you are initially positioned at the first index of the array.<br>Each element in the array represents your maximum jump length at that position.<br>Your goal is to reach the last index in the minimum number of jumps.<br>You can assume that you can always reach the last index.</p>
+<p>You are given an integer array <code>nums</code>. You are initially positioned at the array’s <strong>first index</strong>, and each element in the array represents your maximum jump length at that position.<br>Return <code>true</code> <em>if you can reach the last index, or</em> <code>false</code> <em>otherwise</em>.</p>
 <p><strong>Example 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [2,3,1,1,4]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The minimum number of jumps to reach the last index is 2\. Jump 1 step from index 0 to 1, then 3 steps to the last index.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [2,3,1,1,4]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.</span><br></pre></td></tr></table></figure>
 
 <p><strong>Example 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [2,3,0,1,4]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3,2,1,0,4]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.</span><br></pre></td></tr></table></figure>
 
 <p><strong>Constraints:</strong></p>
 <ul>
 <li>  1 &lt;= nums.length &lt;= 10<sup>4</sup></li>
-<li>  0 &lt;= nums[i] &lt;= 1000</li>
+<li>  0 &lt;= nums[i] &lt;= 10<sup>5</sup></li>
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">jump</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line">    ans,cur,farest := <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++&#123;</span><br><span class="line">        farest = max(farest,i+nums[i])</span><br><span class="line">        <span class="keyword">if</span> i == cur&#123;</span><br><span class="line">            ans,cur = ans+<span class="number">1</span>,farest</span><br><span class="line">            <span class="keyword">if</span> cur &gt;= n<span class="number">-1</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line">​</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a,b <span class="keyword">int</span>)</span><span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> a&gt;b&#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canJump</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line">    farest,beg,end := <span class="number">0</span>,<span class="number">0</span>,nums[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">next:</span><br><span class="line">    <span class="keyword">for</span> i:=beg; i&lt;=end; i++&#123;</span><br><span class="line">        farest = max(farest,i+nums[i])</span><br><span class="line">        <span class="keyword">if</span> farest&gt;=n<span class="number">-1</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> i==end &amp;&amp; end==farest &amp;&amp; nums[end]==<span class="number">0</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> i==end&#123;</span><br><span class="line">            beg = end</span><br><span class="line">            end = farest</span><br><span class="line">            <span class="keyword">goto</span> next</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">​</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a,b <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b&#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>#medium #greedy</p>
+<p>#medium #greedy </p>
 
   </div>
 </article>
@@ -194,10 +192,10 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&text=Leetcode 45. Jump Game II"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&title=Leetcode 45. Jump Game II"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://raffizheng.github.io/2022/05/04/leetcode-top100-liked-45/&title=Leetcode 45. Jump Game II"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&text=Leetcode 55. Jump Game"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&title=Leetcode 55. Jump Game"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://raffizheng.github.io/2022/05/06/leetcode-top100-liked-55/&title=Leetcode 55. Jump Game"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
