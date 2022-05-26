@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/19/rev1ex2.jpg">
 <meta property="article:published_time" content="2022-05-22T13:07:15.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:14:02.933Z">
+<meta property="article:modified_time" content="2022-05-26T08:39:35.422Z">
 <meta property="article:author" content="Raffi Zheng">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg">
@@ -160,8 +160,8 @@
 <ul>
 <li>  The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li>  -5000 &lt;= Node.val &lt;= 5000</li>
-<li><em>Follow up:</em>* A linked list can be reversed either iteratively or recursively. Could you implement both?</li>
 </ul>
+<p><strong>Follow up:</strong> A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * type ListNode struct &#123;</span></span><br><span class="line"><span class="comment"> *     Val int</span></span><br><span class="line"><span class="comment"> *     Next *ListNode</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *ListNode)</span> *<span class="title">ListNode</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> prev *ListNode</span><br><span class="line">    <span class="keyword">for</span> head!=<span class="literal">nil</span>&#123;</span><br><span class="line">        head.Next,prev,head = prev,head,head.Next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
