@@ -14,8 +14,10 @@
 <meta property="og:description" content="DescriptionRelated Topics: String, Dynamic Programming, Backtracking Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioni">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-15T07:28:19.000Z">
-<meta property="article:modified_time" content="2022-05-15T07:29:40.721Z">
+<meta property="article:modified_time" content="2022-06-01T00:16:21.725Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="backtrack">
+<meta property="article:tag" content="palindrome">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +64,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +140,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/backtrack/" rel="tag">backtrack</a>, <a class="tag-link-link" href="/tags/palindrome/" rel="tag">palindrome</a>
+    </div>
+
 
     </div>
   </header>
@@ -157,9 +166,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(s <span class="keyword">string</span>)</span> [][]<span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> ans [][]<span class="keyword">string</span></span><br><span class="line">    re(s,[]<span class="keyword">string</span>&#123;&#125;,&amp;ans)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//backtrack</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">re</span><span class="params">(s <span class="keyword">string</span>,path []<span class="keyword">string</span>,ans *[][]<span class="keyword">string</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(s)==<span class="number">0</span>&#123;</span><br><span class="line">        *ans = <span class="built_in">append</span>(*ans,path)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;=<span class="built_in">len</span>(s); i++&#123;</span><br><span class="line">        subS := s[:i]</span><br><span class="line">        <span class="keyword">if</span> isPal(subS)&#123;</span><br><span class="line">            newPath := <span class="built_in">make</span>([]<span class="keyword">string</span>,<span class="built_in">len</span>(path)+<span class="number">1</span>)</span><br><span class="line">            <span class="built_in">copy</span>(newPath,path)</span><br><span class="line">            newPath[<span class="built_in">len</span>(path)]=subS</span><br><span class="line">            re(s[i:],newPath,ans)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//is that a palindrome</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isPal</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s)/<span class="number">2</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> s[i] != s[<span class="built_in">len</span>(s)<span class="number">-1</span>-i] &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #backtrack #palindrome</p>
-
   </div>
 </article>
 
@@ -179,9 +185,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -227,9 +235,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

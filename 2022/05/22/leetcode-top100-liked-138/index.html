@@ -17,8 +17,10 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/18/e2.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/18/e3.png">
 <meta property="article:published_time" content="2022-05-22T13:06:24.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:08:02.932Z">
+<meta property="article:modified_time" content="2022-06-01T00:16:51.825Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="hash-table">
+<meta property="article:tag" content="linked-list">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://assets.leetcode.com/uploads/2019/12/18/e1.png">
     
@@ -66,9 +68,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -140,6 +144,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/hash-table/" rel="tag">hash-table</a>, <a class="tag-link-link" href="/tags/linked-list/" rel="tag">linked-list</a>
+    </div>
+
 
     </div>
   </header>
@@ -170,9 +179,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a Node.</span></span><br><span class="line"><span class="comment"> * type Node struct &#123;</span></span><br><span class="line"><span class="comment"> *     Val int</span></span><br><span class="line"><span class="comment"> *     Next *Node</span></span><br><span class="line"><span class="comment"> *     Random *Node</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">copyRandomList</span><span class="params">(head *Node)</span> *<span class="title">Node</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> cur1,cur2 *Node</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[*Node]*Node)</span><br><span class="line">    dummy := &amp;Node&#123;&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//duplicate &quot;Val&quot; &amp; &quot;Next&quot;</span></span><br><span class="line">    cur1 = head</span><br><span class="line">    cur2 = dummy</span><br><span class="line">    <span class="keyword">for</span> cur1 != <span class="literal">nil</span>&#123;</span><br><span class="line">        newNode := &amp;Node&#123;Val: cur1.Val&#125;</span><br><span class="line">        m[cur1] = newNode</span><br><span class="line">        cur2.Next = newNode</span><br><span class="line">        cur1 = cur1.Next</span><br><span class="line">        cur2 = cur2.Next</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//duplicate &quot;Random&quot;</span></span><br><span class="line">    cur1 = head</span><br><span class="line">    cur2 = dummy.Next</span><br><span class="line">    <span class="keyword">for</span> cur1 != <span class="literal">nil</span>&#123;</span><br><span class="line">        cur2.Random = m[cur1.Random]</span><br><span class="line">        cur1 = cur1.Next</span><br><span class="line">        cur2 = cur2.Next</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dummy.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #linked-list #hash-table </p>
-
   </div>
 </article>
 
@@ -192,9 +198,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -240,9 +248,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

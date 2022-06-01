@@ -14,8 +14,9 @@
 <meta property="og:description" content="DescriptionDifficulty: EasyRelated Topics: Array, Dynamic Programming You are given an array prices where prices[i] is the price of a given stock on the ith day.You want to maximize your profit by cho">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-15T07:28:13.000Z">
-<meta property="article:modified_time" content="2022-05-15T07:29:19.483Z">
+<meta property="article:modified_time" content="2022-06-01T00:15:41.662Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +63,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +139,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DP/" rel="tag">DP</a>
+    </div>
+
 
     </div>
   </header>
@@ -157,9 +165,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxProfit</span><span class="params">(prices []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    min,max,ans := prices[<span class="number">0</span>],prices[<span class="number">0</span>],<span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> prices&#123;</span><br><span class="line">        <span class="keyword">if</span> prices[i]&gt;max&#123;</span><br><span class="line">            max = prices[i]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> prices[i]&lt;min&#123;</span><br><span class="line">            min = prices[i]</span><br><span class="line">            max = min</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> max-min&gt;ans&#123;</span><br><span class="line">            ans = max-min</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#easy #dp </p>
-
   </div>
 </article>
 
@@ -179,9 +184,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -227,9 +234,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

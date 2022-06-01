@@ -14,8 +14,9 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Hash Table, Union Find Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.You must write an al">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-15T07:28:16.000Z">
-<meta property="article:modified_time" content="2022-05-15T07:29:31.177Z">
+<meta property="article:modified_time" content="2022-06-01T00:15:56.029Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="hash-table">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +63,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +139,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/hash-table/" rel="tag">hash-table</a>
+    </div>
+
 
     </div>
   </header>
@@ -157,9 +165,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">longestConsecutive</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    numsMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">bool</span>)</span><br><span class="line">    <span class="keyword">var</span> ans <span class="keyword">int</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> _,num := <span class="keyword">range</span> nums&#123;</span><br><span class="line">        numsMap[num] = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> num := <span class="keyword">range</span> numsMap&#123;</span><br><span class="line">        <span class="keyword">if</span> numsMap[num<span class="number">-1</span>]&#123;<span class="comment">//it can not be the first num of the longest consecutive sequence</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        firstNum := num</span><br><span class="line">        <span class="keyword">for</span> numsMap[num]&#123;</span><br><span class="line">            num++</span><br><span class="line">        &#125;</span><br><span class="line">        ans = max(ans,num-firstNum)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a,b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b&#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#hash-table #medium </p>
-
   </div>
 </article>
 
@@ -179,9 +184,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -227,9 +234,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

@@ -14,8 +14,9 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Depth-First Search, Breadth-First Search, Graph, Topological Sort There are a total of numCourses courses you have to take, labeled from 0 to numCourses -">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-26T08:31:29.000Z">
-<meta property="article:modified_time" content="2022-05-26T08:32:19.231Z">
+<meta property="article:modified_time" content="2022-06-01T00:21:07.172Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DFS">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +63,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +139,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DFS/" rel="tag">DFS</a>
+    </div>
+
 
     </div>
   </header>
@@ -163,9 +171,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canFinish</span><span class="params">(numCourses <span class="keyword">int</span>, prerequisites [][]<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    course := build(numCourses, prerequisites)</span><br><span class="line">    visit := <span class="built_in">make</span>([]<span class="keyword">bool</span>, numCourses)</span><br><span class="line">    path := <span class="built_in">make</span>([]<span class="keyword">bool</span>, numCourses)</span><br><span class="line">    hasCycle := <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> dfs <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line">    dfs = <span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> path[i] &#123;</span><br><span class="line">            hasCycle = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//need no more check if visited or hascycle</span></span><br><span class="line">        <span class="keyword">if</span> visit[i] || hasCycle &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        visit[i] = <span class="literal">true</span></span><br><span class="line">        path[i] = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">for</span> _, next := <span class="keyword">range</span> course[i] &#123;</span><br><span class="line">            dfs(next)</span><br><span class="line">        &#125;</span><br><span class="line">        path[i] = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; numCourses; i++ &#123;</span><br><span class="line">        dfs(i)</span><br><span class="line">        <span class="keyword">if</span> hasCycle&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">build</span><span class="params">(numCourses <span class="keyword">int</span>, prerequisites [][]<span class="keyword">int</span>)</span> [][] <span class="title">int</span></span> &#123;</span><br><span class="line">    course := <span class="built_in">make</span>([][]<span class="keyword">int</span>, numCourses)</span><br><span class="line">    <span class="keyword">for</span> _, per := <span class="keyword">range</span> prerequisites &#123;</span><br><span class="line">        from, to := per[<span class="number">0</span>], per[<span class="number">1</span>]</span><br><span class="line">        course[from] = <span class="built_in">append</span>(course[from], to)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #dfs </p>
-
   </div>
 </article>
 
@@ -185,9 +190,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -233,9 +240,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

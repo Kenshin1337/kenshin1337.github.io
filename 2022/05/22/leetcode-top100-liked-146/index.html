@@ -14,8 +14,11 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Hash Table, Linked List, Design, Doubly-Linked List Design a data structure that follows the constraints of a .Implement the LRUCache class:    LRUCache(in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-22T13:06:42.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:09:13.712Z">
+<meta property="article:modified_time" content="2022-06-01T00:18:22.234Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="hash-table">
+<meta property="article:tag" content="linked-list">
+<meta property="article:tag" content="design">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +65,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +141,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/design/" rel="tag">design</a>, <a class="tag-link-link" href="/tags/hash-table/" rel="tag">hash-table</a>, <a class="tag-link-link" href="/tags/linked-list/" rel="tag">linked-list</a>
+    </div>
+
 
     </div>
   </header>
@@ -163,7 +173,6 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> LRUCache <span class="keyword">struct</span> &#123;</span><br><span class="line">    cache <span class="keyword">map</span>[<span class="keyword">int</span>]*list.Element</span><br><span class="line">    linklist *list.List</span><br><span class="line">    capacity <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(capacity <span class="keyword">int</span>)</span> <span class="title">LRUCache</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> LRUCache&#123;</span><br><span class="line">        cache: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]*list.Element,capacity),</span><br><span class="line">        linklist: list.New(),</span><br><span class="line">        capacity: capacity,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LRUCache)</span> <span class="title">Get</span><span class="params">(key <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> elem,ok := this.cache[key];ok&#123;<span class="comment">//key exists</span></span><br><span class="line">        this.linklist.MoveToFront(elem)</span><br><span class="line">        <span class="keyword">return</span> elem.Value.([]<span class="keyword">int</span>)[<span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LRUCache)</span> <span class="title">Put</span><span class="params">(key <span class="keyword">int</span>, value <span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    <span class="keyword">if</span> elem,ok := this.cache[key];ok&#123;<span class="comment">//key exists</span></span><br><span class="line">        this.linklist.Remove(elem)</span><br><span class="line">        newElem := this.linklist.PushFront([]<span class="keyword">int</span>&#123;key,value&#125;)</span><br><span class="line">        this.cache[key] = newElem</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(this.cache) == this.capacity&#123;<span class="comment">//full, delete the LRU key</span></span><br><span class="line">        elem := this.linklist.Back()</span><br><span class="line">        v := this.linklist.Remove(elem)</span><br><span class="line">        <span class="built_in">delete</span>(this.cache,v.([]<span class="keyword">int</span>)[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//key doesn&#x27;t exist &amp;&amp; capacity is full</span></span><br><span class="line">    newElem := this.linklist.PushFront([]<span class="keyword">int</span>&#123;key,value&#125;)</span><br><span class="line">    this.cache[key] = newElem</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * obj := Constructor(capacity);</span></span><br><span class="line"><span class="comment"> * param_1 := obj.Get(key);</span></span><br><span class="line"><span class="comment"> * obj.Put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p><a target="_blank" rel="noopener" href="https://pkg.go.dev/container/list">The “container/list” package</a></p>
-<p>#medium #design #hash-table #linked-list </p>
 
   </div>
 </article>
@@ -184,9 +193,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -232,9 +243,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

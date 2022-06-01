@@ -14,8 +14,10 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Depth-First Search, Breadth-First Search, Union Find, Matrix Given an m x n 2D binary grid grid which represents a map of &#39;1&#39;s (land) and &amp;#">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-22T13:07:11.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:10:55.146Z">
+<meta property="article:modified_time" content="2022-06-01T00:20:42.660Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="matrix">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +64,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +140,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DFS/" rel="tag">DFS</a>, <a class="tag-link-link" href="/tags/matrix/" rel="tag">matrix</a>
+    </div>
+
 
     </div>
   </header>
@@ -159,9 +168,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">numIslands</span><span class="params">(grid [][]<span class="keyword">byte</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> ans <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> grid&#123;</span><br><span class="line">        <span class="keyword">for</span> j := <span class="keyword">range</span> grid[<span class="number">0</span>]&#123;</span><br><span class="line">            <span class="keyword">if</span> grid[i][j] == <span class="string">&#x27;1&#x27;</span>&#123;</span><br><span class="line">                dfs(&amp;grid,i,j)</span><br><span class="line">                ans++</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(grid *[][]<span class="keyword">byte</span>, i <span class="keyword">int</span>, j <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">    m,n := <span class="built_in">len</span>(*grid),<span class="built_in">len</span>((*grid)[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> i&lt;<span class="number">0</span> || i&gt;m<span class="number">-1</span> || j&lt;<span class="number">0</span> || j&gt;n<span class="number">-1</span> || (*grid)[i][j]==<span class="string">&#x27;0&#x27;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    (*grid)[i][j] = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    dfs(grid,i<span class="number">-1</span>,j)</span><br><span class="line">    dfs(grid,i+<span class="number">1</span>,j)</span><br><span class="line">    dfs(grid,i,j<span class="number">-1</span>)</span><br><span class="line">    dfs(grid,i,j+<span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #dfs #matrix </p>
-
   </div>
 </article>
 
@@ -181,9 +187,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -229,9 +237,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

@@ -14,8 +14,9 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-22T13:07:07.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:10:46.009Z">
+<meta property="article:modified_time" content="2022-06-01T00:20:28.576Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +63,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +139,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DP/" rel="tag">DP</a>
+    </div>
+
 
     </div>
   </header>
@@ -157,9 +165,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">rob</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line">    dp1 := <span class="number">0</span></span><br><span class="line">    dp2 := <span class="number">0</span></span><br><span class="line">    dp := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i := n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">        dp = max(dp1, dp2 + nums[i])</span><br><span class="line">        dp2 = dp1</span><br><span class="line">        dp1 = dp</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #dp</p>
-
   </div>
 </article>
 
@@ -179,9 +184,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -227,9 +234,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

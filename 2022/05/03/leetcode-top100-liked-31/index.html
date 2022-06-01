@@ -15,8 +15,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/RaffiZheng/imgRepository@master/leetcode31.webp">
 <meta property="article:published_time" content="2022-05-03T10:03:56.000Z">
-<meta property="article:modified_time" content="2022-05-14T01:59:54.475Z">
+<meta property="article:modified_time" content="2022-06-01T00:04:38.497Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="lexicographical-order">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/RaffiZheng/imgRepository@master/leetcode31.webp">
     
@@ -64,9 +66,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -138,6 +142,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/lexicographical-order/" rel="tag">lexicographical-order</a>, <a class="tag-link-link" href="/tags/math/" rel="tag">math</a>
+    </div>
+
 
     </div>
   </header>
@@ -169,7 +178,6 @@
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">nextPermutation</span><span class="params">(nums []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line">    i,j,k := n<span class="number">-2</span>,n<span class="number">-1</span>,n<span class="number">-1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//find the consecutively incresing points</span></span><br><span class="line">    <span class="keyword">for</span> i&gt;=<span class="number">0</span> &amp;&amp; nums[i]&gt;=nums[j]&#123;</span><br><span class="line">        i--</span><br><span class="line">        j--</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//exchange num[i] nums[k]</span></span><br><span class="line">    <span class="comment">//k is the index of the first num larger than nums[i] from end to j</span></span><br><span class="line">    <span class="keyword">if</span> i&gt;=<span class="number">0</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> j&lt;=k &amp;&amp; nums[i]&gt;=nums[k]&#123;</span><br><span class="line">            k--</span><br><span class="line">        &#125;</span><br><span class="line">        nums[i],nums[k] = nums[k],nums[i]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//reverse nums[j:]</span></span><br><span class="line">    <span class="keyword">for</span> i,j = j,n<span class="number">-1</span>; i&lt;j; i,j = i+<span class="number">1</span>,j<span class="number">-1</span>&#123;</span><br><span class="line">        nums[i],nums[j] = nums[j],nums[i]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>The order changes from 45° to -45° in graph.<br><img src="https://cdn.jsdelivr.net/gh/RaffiZheng/imgRepository@master/leetcode31.webp" alt="leetcode31"></p>
-<p>#medium #math #lexicographical-order</p>
 
   </div>
 </article>
@@ -190,9 +198,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -238,9 +248,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

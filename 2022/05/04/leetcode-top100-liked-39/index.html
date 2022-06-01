@@ -14,8 +14,10 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Backtracking Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates wher">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-04T09:25:05.000Z">
-<meta property="article:modified_time" content="2022-05-14T01:31:42.436Z">
+<meta property="article:modified_time" content="2022-06-01T00:07:02.976Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="backtrack">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +64,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +140,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DFS/" rel="tag">DFS</a>, <a class="tag-link-link" href="/tags/backtrack/" rel="tag">backtrack</a>
+    </div>
+
 
     </div>
   </header>
@@ -164,7 +173,6 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">combinationSum</span><span class="params">(candidates []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> [][]<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> ans [][]<span class="keyword">int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> dfs <span class="function"><span class="keyword">func</span><span class="params">(start <span class="keyword">int</span>, sum <span class="keyword">int</span>, path []<span class="keyword">int</span>)</span></span></span><br><span class="line">    dfs = <span class="function"><span class="keyword">func</span><span class="params">(start <span class="keyword">int</span>, sum <span class="keyword">int</span>, path []<span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> sum&gt;=target&#123;</span><br><span class="line">            <span class="keyword">if</span> sum==target&#123;</span><br><span class="line">                copyPath := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(path))</span><br><span class="line">                <span class="built_in">copy</span>(copyPath,path)</span><br><span class="line">                ans = <span class="built_in">append</span>(ans,copyPath)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i:=start; i&lt;<span class="built_in">len</span>(candidates); i++&#123;</span><br><span class="line">            path = <span class="built_in">append</span>(path,candidates[i])</span><br><span class="line">            dfs(i,sum+candidates[i],path)</span><br><span class="line">            path = path[:<span class="built_in">len</span>(path)<span class="number">-1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dfs(<span class="number">0</span>,<span class="number">0</span>,[]<span class="keyword">int</span>&#123;&#125;)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>Copy <code>path</code> before append it to <code>ans</code></p>
-<p>#medium #dfs #backtrack </p>
 
   </div>
 </article>
@@ -185,9 +193,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -233,9 +243,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

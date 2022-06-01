@@ -14,8 +14,10 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Dynamic Programming Given an integer array nums, find a contiguous non-empty subarray within the array that has the largest product, and return the">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-22T13:06:48.000Z">
-<meta property="article:modified_time" content="2022-05-22T13:09:40.290Z">
+<meta property="article:modified_time" content="2022-06-01T00:19:01.989Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="DP">
+<meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +64,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +140,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/DP/" rel="tag">DP</a>, <a class="tag-link-link" href="/tags/math/" rel="tag">math</a>
+    </div>
+
 
     </div>
   </header>
@@ -158,9 +167,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &lt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxProduct</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    smallest := nums[<span class="number">0</span>]</span><br><span class="line">    largest := nums[<span class="number">0</span>]</span><br><span class="line">    result := nums[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//if v is negative</span></span><br><span class="line">    <span class="comment">//smallest*v will be largest</span></span><br><span class="line">    <span class="comment">//largest*v will be smallest</span></span><br><span class="line">    <span class="comment">//vice versa</span></span><br><span class="line">    <span class="keyword">for</span> _, v := <span class="keyword">range</span> nums[<span class="number">1</span>:] &#123;</span><br><span class="line">        smallest, largest = min(v, min(smallest*v, largest*v)), max(v, max(smallest*v, largest*v))</span><br><span class="line">        result = max(result, largest)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #math #dp </p>
-
   </div>
 </article>
 
@@ -180,9 +186,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -228,9 +236,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         

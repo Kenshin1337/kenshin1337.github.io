@@ -14,8 +14,9 @@
 <meta property="og:description" content="DescriptionDifficulty: MediumRelated Topics: Array, Divide and Conquer, Sorting, Heap (Priority Queue), Quickselect Given an integer array nums and an integer k, return the kth largest element in the">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-26T08:31:37.000Z">
-<meta property="article:modified_time" content="2022-05-26T08:32:56.844Z">
+<meta property="article:modified_time" content="2022-06-01T00:21:51.006Z">
 <meta property="article:author" content="Raffi Zheng">
+<meta property="article:tag" content="sort">
 <meta name="twitter:card" content="summary">
     
     
@@ -62,9 +63,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -136,6 +139,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/sort/" rel="tag">sort</a>
+    </div>
+
 
     </div>
   </header>
@@ -157,9 +165,6 @@
 </ul>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findKthLargest</span><span class="params">(nums []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    sort.Ints(nums)</span><br><span class="line">    <span class="keyword">return</span> nums[<span class="built_in">len</span>(nums)-k]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#medium #sort </p>
-
   </div>
 </article>
 
@@ -179,9 +184,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
@@ -227,9 +234,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/2021/08/15/about-me/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
           <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
          
           <li><a href="/search/">Search</a></li>
         
