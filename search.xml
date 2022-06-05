@@ -4,6 +4,483 @@
   
     
     <entry>
+      <title>Leetcode 1143. Longest Common Subsequence</title>
+      <link href="/2022/06/05/leetcode-top100-liked-1143/"/>
+      <url>/2022/06/05/leetcode-top100-liked-1143/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/string/">String</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a></p><p>Given two strings <code>text1</code> and <code>text2</code>, return _the length of their longest <strong>common subsequence</strong>._ If there is no <strong>common subsequence</strong>, return <code>0</code>.<br>A <strong>subsequence</strong> of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.</p><ul><li>  For example, <code>&quot;ace&quot;</code> is a subsequence of <code>&quot;abcde&quot;</code>.<br>A <strong>common subsequence</strong> of two strings is a subsequence that is common to both strings.</li></ul><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: text1 = &quot;abcde&quot;, text2 = &quot;ace&quot; </span><br><span class="line">Output: 3  </span><br><span class="line">Explanation: The longest common subsequence is &quot;ace&quot; and its length is 3.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: text1 = &quot;abc&quot;, text2 = &quot;abc&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The longest common subsequence is &quot;abc&quot; and its length is 3.</span><br></pre></td></tr></table></figure><p><strong>Example 3:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: text1 = &quot;abc&quot;, text2 = &quot;def&quot;</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: There is no such common subsequence, so the result is 0.</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= text1.length, text2.length &lt;= 1000</li><li>  <code>text1</code> and <code>text2</code> consist of only lowercase English characters.</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">longestCommonSubsequence</span><span class="params">(text1 <span class="keyword">string</span>, text2 <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">var</span> l1, l2 <span class="keyword">int</span> = <span class="built_in">len</span>(text1), <span class="built_in">len</span>(text2)</span><br><span class="line"><span class="keyword">var</span> dp [][]<span class="keyword">int</span> = <span class="built_in">make</span>([][]<span class="keyword">int</span>, l1+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;=l1; i++&#123;</span><br><span class="line">dp[i] = <span class="built_in">make</span>([]<span class="keyword">int</span>, l2+<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;=l1; i++&#123;</span><br><span class="line"><span class="keyword">for</span> j:=<span class="number">1</span>; j&lt;=l2; j++&#123;</span><br><span class="line"><span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>] &#123;</span><br><span class="line">dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">if</span> dp[i][j<span class="number">-1</span>] &gt; dp[i<span class="number">-1</span>][j] &#123;</span><br><span class="line">dp[i][j] = dp[i][j<span class="number">-1</span>]</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">return</span> dp[l1][l2]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 763. Partition Labels</title>
+      <link href="/2022/06/05/leetcode-top100-liked-763/"/>
+      <url>/2022/06/05/leetcode-top100-liked-763/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/hash-table/">Hash Table</a>, <a href="https://leetcode.com/tag/two-pointers/">Two Pointers</a>, <a href="https://leetcode.com/tag/string/">String</a>, <a href="https://leetcode.com/tag/greedy/">Greedy</a></p><p>You are given a string <code>s</code>. We want to partition the string into as many parts as possible so that each letter appears in at most one part.<br>Note that the partition is done so that after concatenating all the parts in order, the resultant string should be <code>s</code>.<br>Return <em>a list of integers representing the size of these parts</em>.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;ababcbacadefegdehijhklij&quot;</span><br><span class="line">Output: [9,7,8]</span><br><span class="line">Explanation:</span><br><span class="line">The partition is &quot;ababcbaca&quot;, &quot;defegde&quot;, &quot;hijhklij&quot;.</span><br><span class="line">This is a partition so that each letter appears in at most one part.</span><br><span class="line">A partition like &quot;ababcbacadefegde&quot;, &quot;hijhklij&quot; is incorrect, because it splits s into less parts.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;eccbbbbdec&quot;</span><br><span class="line">Output: [10]</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= s.length &lt;= 500</li><li>  <code>s</code> consists of lowercase English letters.</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"> <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">   <span class="keyword">return</span> a</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">partitionLabels</span><span class="params">(S <span class="keyword">string</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> start,end <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">var</span> ans []<span class="keyword">int</span></span><br><span class="line">    last_idx := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">byte</span>]<span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">for</span> idx := <span class="keyword">range</span>(S) &#123;</span><br><span class="line">        last_idx[S[idx]] = idx</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> idx, _ := <span class="keyword">range</span>(S) &#123;</span><br><span class="line">        end = max(end, last_idx[(S[idx])])</span><br><span class="line">        <span class="keyword">if</span> idx == end &#123;</span><br><span class="line">            ans = <span class="built_in">append</span>(ans, idx - start + <span class="number">1</span>)</span><br><span class="line">            start = idx + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hash-table </tag>
+            
+            <tag> two-points </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 739. Daily Temperatures</title>
+      <link href="/2022/06/05/leetcode-top100-liked-739/"/>
+      <url>/2022/06/05/leetcode-top100-liked-739/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/stack/">Stack</a>, <a href="https://leetcode.com/tag/monotonic-stack/">Monotonic Stack</a></p><p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> i<sup>th</sup> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: temperatures = [73,74,75,71,69,72,76,73]</span><br><span class="line">Output: [1,1,4,2,1,1,0,0]</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: temperatures = [30,40,50,60]</span><br><span class="line">Output: [1,1,1,0]</span><br></pre></td></tr></table></figure><p><strong>Example 3:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: temperatures = [30,60,90]</span><br><span class="line">Output: [1,1,0]</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= temperatures.length &lt;= 10<sup>5</sup></li><li>  30 &lt;= temperatures[i] &lt;= 100</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dailyTemperatures</span><span class="params">(temperatures []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(temperatures)</span><br><span class="line">    ans := <span class="built_in">make</span>([]<span class="keyword">int</span>, n)</span><br><span class="line">    st := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; i++ &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">len</span>(st) &gt; <span class="number">0</span> &amp;&amp; temperatures[st[<span class="built_in">len</span>(st)<span class="number">-1</span>]] &lt; temperatures[i] &#123;</span><br><span class="line">            ans[st[<span class="built_in">len</span>(st)<span class="number">-1</span>]] = i - st[<span class="built_in">len</span>(st)<span class="number">-1</span>]</span><br><span class="line">            st = st[:<span class="built_in">len</span>(st)<span class="number">-1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        st = <span class="built_in">append</span>(st, i)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> stack </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 647. Palindromic Substrings</title>
+      <link href="/2022/06/05/leetcode-top100-liked-647/"/>
+      <url>/2022/06/05/leetcode-top100-liked-647/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/string/">String</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a></p><p>Given a string <code>s</code>, return _the number of <strong>palindromic substrings</strong> in it_.<br>A string is a <strong>palindrome</strong> when it reads the same backward as forward.<br>A <strong>substring</strong> is a contiguous sequence of characters within the string.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;abc&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Three palindromic strings: &quot;a&quot;, &quot;b&quot;, &quot;c&quot;.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;aaa&quot;</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: Six palindromic strings: &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;aa&quot;, &quot;aa&quot;, &quot;aaa&quot;.</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= s.length &lt;= 1000</li><li>  <code>s</code> consists of lowercase English letters.</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">countSubstrings</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    ans := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(s); i++&#123;</span><br><span class="line">        ans++</span><br><span class="line">        <span class="keyword">for</span> d:=<span class="number">0</span>; d&lt;=<span class="number">1</span>; d++&#123;</span><br><span class="line">            l,r := i-d,i+<span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> l&gt;=<span class="number">0</span> &amp;&amp; r&lt;<span class="built_in">len</span>(s) &amp;&amp; s[l]==s[r]&#123;</span><br><span class="line">                ans++</span><br><span class="line">                l--</span><br><span class="line">                r++</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> palindrome </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 560. Subarray Sum Equals K</title>
+      <link href="/2022/06/05/leetcode-top100-liked-560/"/>
+      <url>/2022/06/05/leetcode-top100-liked-560/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/hash-table/">Hash Table</a>, <a href="https://leetcode.com/tag/prefix-sum/">Prefix Sum</a></p><p>Given an array of integers <code>nums</code> and an integer <code>k</code>, return <em>the total number of subarrays whose sum equals to</em> <code>k</code>.<br>A subarray is a contiguous <strong>non-empty</strong> sequence of elements within an array.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,1,1], k = 2</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3], k = 3</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></li><li>  -1000 &lt;= nums[i] &lt;= 1000</li><li>  -10<sup>7</sup> &lt;= k &lt;= 10<sup>7</sup></li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">subarraySum</span><span class="params">(nums []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    prefix := <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>&#123;<span class="number">0</span>: <span class="number">1</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> sum <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">var</span> count <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _, num := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        sum += num</span><br><span class="line">        count += prefix[sum-k]</span><br><span class="line">        prefix[sum]++</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hash-table </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 543. Diameter of Binary Tree</title>
+      <link href="/2022/06/05/leetcode-top100-liked-543/"/>
+      <url>/2022/06/05/leetcode-top100-liked-543/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Easy</strong><br>Related Topics: <a href="https://leetcode.com/tag/tree/">Tree</a>, <a href="https://leetcode.com/tag/depth-first-search/">Depth-First Search</a>, <a href="https://leetcode.com/tag/binary-tree/">Binary Tree</a></p><p>Given the <code>root</code> of a binary tree, return _the length of the <strong>diameter</strong> of the tree_.<br>The <strong>diameter</strong> of a binary tree is the <strong>length</strong> of the longest path between any two nodes in a tree. This path may or may not pass through the <code>root</code>.<br>The <strong>length</strong> of a path between two nodes is represented by the number of edges between them.</p><p><strong>Example 1:</strong><br><img src="https://assets.leetcode.com/uploads/2021/03/06/diamtree.jpg"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: root = [1,2,3,4,5]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: root = [1,2]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  The number of nodes in the tree is in the range [1, 10<sup>4</sup>].</li><li>  -100 &lt;= Node.val &lt;= 100</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * type TreeNode struct &#123;</span></span><br><span class="line"><span class="comment"> *     Val int</span></span><br><span class="line"><span class="comment"> *     Left *TreeNode</span></span><br><span class="line"><span class="comment"> *     Right *TreeNode</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">diameterOfBinaryTree</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">d := <span class="number">0</span></span><br><span class="line">dfs(root, &amp;d)</span><br><span class="line"><span class="keyword">return</span> d</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(node *TreeNode, d *<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> node == <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">left := dfs(node.Left, d)</span><br><span class="line">right := dfs(node.Right, d)</span><br><span class="line">*d = max(left+right, *d)</span><br><span class="line">    <span class="comment">//return to the last deepth, so need +1</span></span><br><span class="line"><span class="keyword">return</span> max(left,right) +<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line"><span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tree </tag>
+            
+            <tag> DFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 494. Target Sum</title>
+      <link href="/2022/06/05/leetcode-top100-liked-494/"/>
+      <url>/2022/06/05/leetcode-top100-liked-494/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a>, <a href="https://leetcode.com/tag/backtracking/">Backtracking</a></p><p>You are given an integer array <code>nums</code> and an integer <code>target</code>.<br>You want to build an <strong>expression</strong> out of nums by adding one of the symbols <code>&#39;+&#39;</code> and <code>&#39;-&#39;</code> before each integer in nums and then concatenate all the integers.</p><ul><li>  For example, if <code>nums = [2, 1]</code>, you can add a <code>&#39;+&#39;</code> before <code>2</code> and a <code>&#39;-&#39;</code> before <code>1</code> and concatenate them to build the expression <code>&quot;+2-1&quot;</code>.<br>Return the number of different <strong>expressions</strong> that you can build, which evaluates to <code>target</code>.</li></ul><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,1,1,1,1], target = 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.</span><br><span class="line">-1 + 1 + 1 + 1 + 1 = 3</span><br><span class="line">+1 - 1 + 1 + 1 + 1 = 3</span><br><span class="line">+1 + 1 - 1 + 1 + 1 = 3</span><br><span class="line">+1 + 1 + 1 - 1 + 1 = 3</span><br><span class="line">+1 + 1 + 1 + 1 - 1 = 3</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1], target = 1</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= nums.length &lt;= 20</li><li>  0 &lt;= nums[i] &lt;= 1000</li><li>  0 &lt;= sum(nums[i]) &lt;= 1000</li><li>  -1000 &lt;= target &lt;= 1000</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findTargetSumWays</span><span class="params">(nums []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    sum := <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">sum += n</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// The original problem statement is equivalent to:</span></span><br><span class="line"><span class="comment">// Find a subset of nums that need to be positive,</span></span><br><span class="line"><span class="comment">// and the rest of them is negative, such that the sum is equal to target.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// sum(P) - sum(N) = target</span></span><br><span class="line"><span class="comment">// sum(P) - sum(N) + sum(N) + sum(P) = target + sum(P) + sum(N)</span></span><br><span class="line"><span class="comment">// 2 * sum(P) = target + sum(nums)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The above formula has proved that target + sum(nums) must be even.</span></span><br><span class="line"><span class="keyword">if</span> target &lt; -sum || target &gt; sum || (target+sum)%<span class="number">2</span> &gt; <span class="number">0</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> subsetSum(nums, (target+sum)&gt;&gt;<span class="number">1</span>) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">subsetSum</span><span class="params">(nums []<span class="keyword">int</span>, t <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">dp := <span class="built_in">make</span>([]<span class="keyword">int</span>, t+<span class="number">1</span>)</span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line"><span class="keyword">for</span> i := t; i &gt;= n; i-- &#123;</span><br><span class="line">dp[i] += dp[i-n]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">return</span> dp[t]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 438. Find All Anagrams in a String</title>
+      <link href="/2022/06/05/leetcode-top100-liked-438/"/>
+      <url>/2022/06/05/leetcode-top100-liked-438/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/hash-table/">Hash Table</a>, <a href="https://leetcode.com/tag/string/">String</a>, <a href="https://leetcode.com/tag/sliding-window/">Sliding Window</a></p><p>Given two strings <code>s</code> and <code>p</code>, return <em>an array of all the start indices of</em> <code>p</code><em>‘s anagrams in</em> <code>s</code>. You may return the answer in <strong>any order</strong>.<br>An <strong>Anagram</strong> is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;cbaebabacd&quot;, p = &quot;abc&quot;</span><br><span class="line">Output: [0,6]</span><br><span class="line">Explanation:</span><br><span class="line">The substring with start index = 0 is &quot;cba&quot;, which is an anagram of &quot;abc&quot;.</span><br><span class="line">The substring with start index = 6 is &quot;bac&quot;, which is an anagram of &quot;abc&quot;.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;abab&quot;, p = &quot;ab&quot;</span><br><span class="line">Output: [0,1,2]</span><br><span class="line">Explanation:</span><br><span class="line">The substring with start index = 0 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.</span><br><span class="line">The substring with start index = 1 is &quot;ba&quot;, which is an anagram of &quot;ab&quot;.</span><br><span class="line">The substring with start index = 2 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= s.length, p.length &lt;= 3 * 10<sup>4</sup></li><li>  <code>s</code> and <code>p</code> consist of lowercase English letters.</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findAnagrams</span><span class="params">(s <span class="keyword">string</span>, p <span class="keyword">string</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> sv [<span class="number">26</span>]<span class="keyword">int</span></span><br><span class="line">    <span class="keyword">var</span> pv [<span class="number">26</span>]<span class="keyword">int</span></span><br><span class="line">    ans := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(s) &lt; <span class="built_in">len</span>(p) &#123;</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(p); i++ &#123;</span><br><span class="line">        sv[s[i] - <span class="string">&#x27;a&#x27;</span>]++</span><br><span class="line">        pv[p[i] - <span class="string">&#x27;a&#x27;</span>]++</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> sv == pv &#123;</span><br><span class="line">        ans = <span class="built_in">append</span>(ans, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="built_in">len</span>(p); i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        sv[s[i - <span class="built_in">len</span>(p)] - <span class="string">&#x27;a&#x27;</span>]-- <span class="comment">//delete the left</span></span><br><span class="line">        sv[s[i] - <span class="string">&#x27;a&#x27;</span>]++ <span class="comment">//add the right</span></span><br><span class="line">        <span class="keyword">if</span> sv == pv &#123;</span><br><span class="line">            ans = <span class="built_in">append</span>(ans, i - <span class="built_in">len</span>(p) + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hash-table </tag>
+            
+            <tag> sliding-window </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 437. Path Sum III</title>
+      <link href="/2022/06/05/leetcode-top100-liked-437/"/>
+      <url>/2022/06/05/leetcode-top100-liked-437/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/tree/">Tree</a>, <a href="https://leetcode.com/tag/depth-first-search/">Depth-First Search</a>, <a href="https://leetcode.com/tag/binary-tree/">Binary Tree</a></p><p>Given the <code>root</code> of a binary tree and an integer <code>targetSum</code>, return <em>the number of paths where the sum of the values along the path equals</em> <code>targetSum</code>.<br>The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).</p><p><strong>Example 1:</strong><br><img src="https://assets.leetcode.com/uploads/2021/04/09/pathsum3-1-tree.jpg"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The paths that sum to 8 are shown.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  The number of nodes in the tree is in the range <code>[0, 1000]</code>.</li><li>  -10<sup>9</sup> &lt;= Node.val &lt;= 10<sup>9</sup></li><li>  -1000 &lt;= targetSum &lt;= 1000</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * type TreeNode struct &#123;</span></span><br><span class="line"><span class="comment"> *     Val int</span></span><br><span class="line"><span class="comment"> *     Left *TreeNode</span></span><br><span class="line"><span class="comment"> *     Right *TreeNode</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, targetSum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    m := <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">    m[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> dfs(root, <span class="number">0</span>, targetSum, m)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(root *TreeNode, curSum, targetSum <span class="keyword">int</span>, m <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    curSum += root.Val</span><br><span class="line">    count := m[curSum-targetSum]<span class="comment">//if there is prefix sum</span></span><br><span class="line">    m[curSum]++ <span class="comment">//record the prefix sum</span></span><br><span class="line">    count += dfs(root.Left, curSum, targetSum, m) + dfs(root.Right, curSum, targetSum, m)</span><br><span class="line">    m[curSum]-- <span class="comment">//change to other path</span></span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 416. Partition Equal Subset Sum</title>
+      <link href="/2022/06/05/leetcode-top100-liked-416/"/>
+      <url>/2022/06/05/leetcode-top100-liked-416/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a></p><p>Given a <strong>non-empty</strong> array <code>nums</code> containing <strong>only positive integers</strong>, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,5,11,5]</span><br><span class="line">Output: true</span><br><span class="line">Explanation: The array can be partitioned as [1, 5, 5] and [11].</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3,5]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The array cannot be partitioned into equal sum subsets.</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= nums.length &lt;= 200</li><li>  1 &lt;= nums[i] &lt;= 100</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canPartition</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    sum := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _,num := <span class="keyword">range</span> nums&#123;</span><br><span class="line">        sum += num</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> sum&amp;<span class="number">1</span> == <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    target := sum/<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">range</span> nums &#123;</span><br><span class="line">        sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">                <span class="keyword">if</span> sum+n &lt;= target &#123;</span><br><span class="line">                        sum += n</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> sum == target &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        head := nums[<span class="number">0</span>]</span><br><span class="line">        <span class="built_in">copy</span>(nums, nums[<span class="number">1</span>:])</span><br><span class="line">        nums[<span class="built_in">len</span>(nums)<span class="number">-1</span>] = head</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 394. Decode String</title>
+      <link href="/2022/06/05/leetcode-top100-liked-394/"/>
+      <url>/2022/06/05/leetcode-top100-liked-394/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/string/">String</a>, <a href="https://leetcode.com/tag/stack/">Stack</a>, <a href="https://leetcode.com/tag/recursion/">Recursion</a></p><p>Given an encoded string, return its decoded string.<br>The encoding rule is: <code>k[encoded_string]</code>, where the <code>encoded_string</code> inside the square brackets is being repeated exactly <code>k</code> times. Note that <code>k</code> is guaranteed to be a positive integer.<br>You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, <code>k</code>. For example, there will not be input like <code>3a</code> or <code>2[4]</code>.<br>The test cases are generated so that the length of the output will never exceed 10<sup>5</sup>.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;3[a]2[bc]&quot;</span><br><span class="line">Output: &quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;3[a2[c]]&quot;</span><br><span class="line">Output: &quot;accaccacc&quot;</span><br></pre></td></tr></table></figure><p><strong>Example 3:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">Output: &quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= s.length &lt;= 30</li><li>  <code>s</code> consists of lowercase English letters, digits, and square brackets <code>&#39;[]&#39;</code>.</li><li>  <code>s</code> is guaranteed to be <strong>a valid</strong> input.</li><li>  All the integers in <code>s</code> are in the range <code>[1, 300]</code>.</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">decodeString</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    res, _ := dfs(s, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(s <span class="keyword">string</span>, idx <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">var</span> sb strings.Builder</span><br><span class="line">    numTimes := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> idx &lt; n &#123;</span><br><span class="line">        <span class="keyword">if</span> isAlpha(s[idx]) &#123;</span><br><span class="line">            sb.WriteByte(s[idx])</span><br><span class="line">            idx++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> isDigit(s[idx]) &#123;</span><br><span class="line">            numTimes = numTimes*<span class="number">10</span> + <span class="keyword">int</span>(s[idx]-<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            idx++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> s[idx] == <span class="string">&#x27;[&#x27;</span> &#123;</span><br><span class="line">            nextStr, nextIdx := dfs(s, idx+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; numTimes; i++ &#123;</span><br><span class="line">                sb.WriteString(nextStr)</span><br><span class="line">            &#125;</span><br><span class="line">            numTimes = <span class="number">0</span></span><br><span class="line">            idx = nextIdx</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> s[idx] == <span class="string">&#x27;]&#x27;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> sb.String(), idx+<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.String(), idx+<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isAlpha</span><span class="params">(b <span class="keyword">byte</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; b &lt;= <span class="string">&#x27;z&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isDigit</span><span class="params">(b <span class="keyword">byte</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; b &lt;= <span class="string">&#x27;9&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DFS </tag>
+            
+            <tag> string </tag>
+            
+            <tag> stack </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 347. Top K Frequent Elements</title>
+      <link href="/2022/06/05/leetcode-top100-liked-347/"/>
+      <url>/2022/06/05/leetcode-top100-liked-347/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/hash-table/">Hash Table</a>, <a href="https://leetcode.com/tag/divide-and-conquer/">Divide and Conquer</a>, <a href="https://leetcode.com/tag/sorting/">Sorting</a>, <a href="https://leetcode.com/tag/heap-priority-queue/">Heap (Priority Queue)</a>, <a href="https://leetcode.com/tag/bucket-sort/">Bucket Sort</a>, <a href="https://leetcode.com/tag/counting/">Counting</a>, <a href="https://leetcode.com/tag/quickselect/">Quickselect</a></p><p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>k</code> <em>most frequent elements</em>. You may return the answer in <strong>any order</strong>.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,1,1,2,2,3], k = 2</span><br><span class="line">Output: [1,2]</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1], k = 1</span><br><span class="line">Output: [1]</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= nums.length &lt;= 10<sup>5</sup></li><li>  <code>k</code> is in the range <code>[1, the number of unique elements in the array]</code>.</li><li>  It is <strong>guaranteed</strong> that the answer is <strong>unique</strong>.</li></ul><p><strong>Follow up:</strong> Your algorithm’s time complexity must be better than <code>O(n log n)</code>, where n is the array’s size.</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">topKFrequent</span><span class="params">(nums []<span class="keyword">int</span>, k <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    ans := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">    numFreq := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line"><span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">numFreq[n]++</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">    numFreqInv := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>][]<span class="keyword">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line"><span class="keyword">for</span> num, count := <span class="keyword">range</span> numFreq &#123;</span><br><span class="line">numFreqInv[count] = <span class="built_in">append</span>(numFreqInv[count], num)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> i:=<span class="built_in">len</span>(nums); <span class="built_in">len</span>(ans)!=k; i-- &#123;</span><br><span class="line"><span class="keyword">for</span> _, n := <span class="keyword">range</span> numFreqInv[i] &#123;</span><br><span class="line">ans = <span class="built_in">append</span>(ans, n)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hash-table </tag>
+            
+            <tag> math </tag>
+            
+            <tag> sort </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 338. Counting Bits</title>
+      <link href="/2022/06/05/leetcode-top100-liked-338/"/>
+      <url>/2022/06/05/leetcode-top100-liked-338/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Easy</strong><br>Related Topics: <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a>, <a href="https://leetcode.com/tag/bit-manipulation/">Bit Manipulation</a></p><p>Given an integer <code>n</code>, return <em>an array</em> <code>ans</code> <em>of length</em> <code>n + 1</code> <em>such that for each</em> <code>i</code>(<code>0 &lt;= i &lt;= n</code>)<em>,</em> <code>ans[i]</code> <em>is the <strong>number of</strong></em><code>1</code><em><strong>‘s</strong> in the binary representation of</em> <code>i</code>.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 2</span><br><span class="line">Output: [0,1,1]</span><br><span class="line">Explanation:</span><br><span class="line">0 --&gt; 0</span><br><span class="line">1 --&gt; 1</span><br><span class="line">2 --&gt; 10</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 5</span><br><span class="line">Output: [0,1,1,2,1,2]</span><br><span class="line">Explanation:</span><br><span class="line">0 --&gt; 0</span><br><span class="line">1 --&gt; 1</span><br><span class="line">2 --&gt; 10</span><br><span class="line">3 --&gt; 11</span><br><span class="line">4 --&gt; 100</span><br><span class="line">5 --&gt; 101</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  0 &lt;= n &lt;= 10<sup>5</sup></li></ul><p><strong>Follow up:</strong></p><ul><li>  It is very easy to come up with a solution with a runtime of <code>O(n log n)</code>. Can you do it in linear time <code>O(n)</code> and possibly in a single pass?</li><li>  Can you do it without using any built-in function (i.e., like <code>__builtin_popcount</code> in C++)?</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">countBits</span><span class="params">(n <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    ans := <span class="built_in">make</span>([]<span class="keyword">int</span>, n+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;=n; i++&#123;</span><br><span class="line">        ans[i] = ans[i&gt;&gt;<span class="number">1</span>] + i&amp;<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 322. Coin Change</title>
+      <link href="/2022/06/05/leetcode-top100-liked-322/"/>
+      <url>/2022/06/05/leetcode-top100-liked-322/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a>, <a href="https://leetcode.com/tag/breadth-first-search/">Breadth-First Search</a></p><p>You are given an integer array <code>coins</code> representing coins of different denominations and an integer <code>amount</code> representing a total amount of money.<br>Return <em>the fewest number of coins that you need to make up that amount</em>. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.<br>You may assume that you have an infinite number of each kind of coin.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: coins = [1,2,5], amount = 11</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: 11 = 5 + 5 + 1</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: coins = [2], amount = 3</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure><p><strong>Example 3:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: coins = [1], amount = 0</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= coins.length &lt;= 12</li><li>  1 &lt;= coins[i] &lt;= 2<sup>31</sup> - 1</li><li>  0 &lt;= amount &lt;= 10<sup>4</sup></li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> x &lt; y &#123;</span><br><span class="line"><span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">coinChange</span><span class="params">(coins []<span class="keyword">int</span>, amount <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">dp := <span class="built_in">make</span>([]<span class="keyword">int</span>, amount+<span class="number">1</span>)</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(dp); i++ &#123;</span><br><span class="line">dp[i] = amount + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, coin := <span class="keyword">range</span> coins &#123;</span><br><span class="line"><span class="keyword">for</span> j := coin; j &lt;= amount; j++ &#123;</span><br><span class="line">dp[j] = min(dp[j], dp[j-coin]+<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> dp[amount] &gt; amount &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">return</span> dp[amount]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 300. Longest Increasing Subsequence</title>
+      <link href="/2022/06/05/leetcode-top100-liked-300/"/>
+      <url>/2022/06/05/leetcode-top100-liked-300/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/binary-search/">Binary Search</a>, <a href="https://leetcode.com/tag/dynamic-programming/">Dynamic Programming</a></p><p>Given an integer array <code>nums</code>, return the length of the longest strictly increasing subsequence.<br>A <strong>subsequence</strong> is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, <code>[3,6,2,7]</code> is a subsequence of the array <code>[0,3,1,6,2,2,7]</code>.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [10,9,2,5,3,7,101,18]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [0,1,0,3,2,3]</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure><p><strong>Example 3:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [7,7,7,7,7,7,7]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  <code>1 &lt;= nums.length &lt;= 2500</code></li><li>  -10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></li></ul><p><strong>Follow up:</strong> Can you come up with an algorithm that runs in <code>O(n log(n))</code> time complexity?</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">lengthOfLIS</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    sub := []<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> _,i := <span class="keyword">range</span> nums&#123; <span class="comment">//dynamic programming, renew the sub array</span></span><br><span class="line">        idx := binarySearch(sub, i)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(sub)==idx&#123; <span class="comment">//i is larger than all the number in sub</span></span><br><span class="line">            sub = <span class="built_in">append</span>(sub, i)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123; <span class="comment">//i exists in sub or i is in the range of sub</span></span><br><span class="line">            sub[idx] = i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(sub)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">binarySearch</span><span class="params">(nums []<span class="keyword">int</span>, target <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    n := <span class="built_in">len</span>(nums)</span><br><span class="line">    l,r := <span class="number">0</span>,n</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> l&lt;r&#123;</span><br><span class="line">        mid := (l+r)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> target &lt; nums[mid]&#123;</span><br><span class="line">            r = mid</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> target &gt; nums[mid]&#123;</span><br><span class="line">            l = mid+<span class="number">1</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> binary-search </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 287. Find the Duplicate Number</title>
+      <link href="/2022/06/05/leetcode-top100-liked-287/"/>
+      <url>/2022/06/05/leetcode-top100-liked-287/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Medium</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/two-pointers/">Two Pointers</a>, <a href="https://leetcode.com/tag/binary-search/">Binary Search</a>, <a href="https://leetcode.com/tag/bit-manipulation/">Bit Manipulation</a></p><p>Given an array of integers <code>nums</code> containing <code>n + 1</code> integers where each integer is in the range <code>[1, n]</code> inclusive.<br>There is only <strong>one repeated number</strong> in <code>nums</code>, return <em>this repeated number</em>.<br>You must solve the problem <strong>without</strong> modifying the array <code>nums</code> and uses only constant extra space.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,3,4,2,2]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3,1,3,4,2]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= n &lt;= 10<sup>5</sup></li><li>  <code>nums.length == n + 1</code></li><li>  <code>1 &lt;= nums[i] &lt;= n</code></li><li>  All the integers in <code>nums</code> appear only <strong>once</strong> except for <strong>precisely one integer</strong> which appears <strong>two or more</strong> times.</li></ul><p><strong>Follow up:</strong></p><ul><li>  How can we prove that at least one duplicate number must exist in <code>nums</code>?</li><li>  Can you solve the problem in linear runtime complexity?</li></ul><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findDuplicate</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">bool</span>, <span class="built_in">len</span>(nums)<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">for</span> _,i := <span class="keyword">range</span> nums&#123;</span><br><span class="line">        <span class="keyword">if</span> m[i]&#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            m[i] = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hash-table </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode 283. Move Zeroes</title>
+      <link href="/2022/06/05/leetcode-top100-liked-283/"/>
+      <url>/2022/06/05/leetcode-top100-liked-283/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Difficulty: <strong>Easy</strong><br>Related Topics: <a href="https://leetcode.com/tag/array/">Array</a>, <a href="https://leetcode.com/tag/two-pointers/">Two Pointers</a></p><p>Given an integer array <code>nums</code>, move all <code>0</code>‘s to the end of it while maintaining the relative order of the non-zero elements.<br><strong>Note</strong> that you must do this in-place without making a copy of the array.</p><p><strong>Example 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [0,1,0,3,12]</span><br><span class="line">Output: [1,3,12,0,0]</span><br></pre></td></tr></table></figure><p><strong>Example 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [0]</span><br><span class="line">Output: [0]</span><br></pre></td></tr></table></figure><p><strong>Constraints:</strong></p><ul><li>  1 &lt;= nums.length &lt;= 10<sup>4</sup></li><li>  -2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</li></ul><p><strong>Follow up:</strong> Could you minimize the total number of operations done?</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Language: <strong>Go</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">moveZeroes</span><span class="params">(nums []<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">    nonZeroIndex := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;<span class="built_in">len</span>(nums); i++&#123;</span><br><span class="line">        <span class="keyword">if</span> nums[i]!=<span class="number">0</span>&#123;</span><br><span class="line">            nums[i],nums[nonZeroIndex] = nums[nonZeroIndex],nums[i]</span><br><span class="line">            nonZeroIndex++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode </category>
+          
+          <category> Leetcode top100 liked questions </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Leetcode 240. Search a 2D Matrix II</title>
       <link href="/2022/05/26/leetcode-top100-liked-240/"/>
       <url>/2022/05/26/leetcode-top100-liked-240/</url>
@@ -241,7 +718,7 @@
           
           <category> Leetcode </category>
           
-          <category> Leetcode top100 liked questions </category>
+          <category> Others </category>
           
       </categories>
       
@@ -1052,9 +1529,9 @@
       
         <tags>
             
-            <tag> tree </tag>
-            
             <tag> DP </tag>
+            
+            <tag> tree </tag>
             
         </tags>
       
