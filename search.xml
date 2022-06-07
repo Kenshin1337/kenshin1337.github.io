@@ -756,9 +756,9 @@
       
         <tags>
             
-            <tag> recursion </tag>
+            <tag> tree </tag>
             
-            <tag> Tree </tag>
+            <tag> recursion </tag>
             
         </tags>
       
@@ -1645,9 +1645,9 @@
       
         <tags>
             
-            <tag> tree </tag>
-            
             <tag> DP </tag>
+            
+            <tag> tree </tag>
             
         </tags>
       
@@ -2665,7 +2665,7 @@
       
         <tags>
             
-            <tag> back-track </tag>
+            <tag> backtrack </tag>
             
         </tags>
       
